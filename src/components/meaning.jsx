@@ -3,13 +3,13 @@ import { useSearchWords } from "../hooks/useSearch";
 import { FaPlay } from "react-icons/fa";
 import { VscLoading } from "react-icons/vsc";
 const Meaning = ({ word }) => {
-  const { data: searchWord, isLoading: load } = useSearchWords(word);
+  const { data: searchWord, isLoading: load } = word && useSearchWords(word);
   return (
     <div className="w-full">
       <div className="max-w-[1000px] mx-auto px-6 font-openSans dark:text-white dark:bg-black">
         {load && word ? (
-          <div className="fixed inset-0 flex items-center justify-center bg-black/50 bg-opacity-50 z-20">
-            <VscLoading className="animate-spin text-xl" />
+          <div className="fixed inset-0 z-20 flex items-center justify-center bg-opacity-50 bg-black/50">
+            <VscLoading className="text-xl animate-spin" />
           </div>
         ) : (
           searchWord && (
@@ -36,7 +36,7 @@ const Meaning = ({ word }) => {
                   <li key={__} className="text-xs text-slate-600">
                     {defn?.definition}
                     {defn?.example && (
-                      <span className="block my-2 pl-4 text-darkPink">
+                      <span className="block pl-4 my-2 text-darkPink">
                         E.g. {defn.example}
                       </span>
                     )}
@@ -47,7 +47,7 @@ const Meaning = ({ word }) => {
                 <div className="flex items-center gap-1 py-1 my-1 text-sm justify-normal">
                   <h6 className="px-3 py-1 text-slate-600">Synonyms:</h6>
                   {mean?.synonyms?.map((sym, _, arr) => (
-                    <p className="font-semibold text-darkPink">
+                    <p className="font-semibold text-darkPink" key={_}>
                       {sym}
                       {_ == arr.length - 1 ? "" : " ,"}
                     </p>
@@ -59,7 +59,7 @@ const Meaning = ({ word }) => {
                 <div className="flex items-center gap-1 py-1 my-1 text-sm justify-normal">
                   <h6 className="px-3 py-1 text-slate-600">Antonyms:</h6>
                   {mean?.antonyms?.map((ant, _, arr) => (
-                    <p className="font-semibold text-darkPink">
+                    <p className="font-semibold text-darkPink" key={_}>
                       {ant}
                       {_ == arr.length - 1 ? "" : " ,"}
                     </p>

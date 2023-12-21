@@ -3,8 +3,8 @@ import Headers from "../components/header";
 import Meaning from "../components/meaning";
 import { useDebounce } from "../hooks/useDebounce";
 const Dictionary = () => {
-  const [searchTerm, setSearchTerm] = useState();
-  const debouncedValue = useDebounce(searchTerm, 400);
+  const [searchTerm, setSearchTerm] = useState("keyword");
+  const debouncedValue = useDebounce(searchTerm, 600);
   const updateSearchTerm = (term) => setSearchTerm(term.target.value);
 
   return (
