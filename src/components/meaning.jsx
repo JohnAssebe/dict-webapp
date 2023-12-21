@@ -1,23 +1,31 @@
 /* eslint-disable */
 import { useSearchWords } from "../hooks/useSearch";
 import { FaPlay } from "react-icons/fa";
-const Meaning = () => {
-  const { data: searchWord, isLoading: load } = useSearchWords("keyboard");
-  console.log(searchWord);
+import { VscLoading } from "react-icons/vsc";
+const Meaning = ({ word }) => {
+  const { data: searchWord, isLoading: load } = useSearchWords(word);
   return (
     <div className="w-full">
-      <div className="max-w-[1000px] mx-auto px-6 font-openSans">
-        <div className="flex items-center justify-between">
-          <div className="py-2">
-            <h3 className="text-4xl font-bold font-poppins">
-              {searchWord?.word}
-            </h3>
-            <p className=" text-darkPink">{searchWord?.phonetic}</p>
+      <div className="max-w-[1000px] mx-auto px-6 font-openSans dark:text-white dark:bg-black">
+        {load && word ? (
+          <div className="fixed inset-0 flex items-center justify-center bg-black/50 bg-opacity-50 z-20">
+            <VscLoading className="animate-spin text-xl" />
           </div>
-          <div className="flex items-center justify-center w-12 h-12 rounded-full bg-lightPink">
-            <FaPlay className="text-darkPink" />
-          </div>
-        </div>
+        ) : (
+          searchWord && (
+            <div className="flex items-center justify-between">
+              <div className="py-2">
+                <h3 className="text-4xl font-bold font-poppins">
+                  {searchWord?.word}
+                </h3>
+                <p className=" text-darkPink">{searchWord?.phonetic}</p>
+              </div>
+              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-lightPink">
+                <FaPlay className="text-darkPink" />
+              </div>
+            </div>
+          )
+        )}
         <div className="py-6">
           {searchWord?.meanings?.map((mean, _) => (
             <div key={_}>
@@ -28,13 +36,15 @@ const Meaning = () => {
                   <li key={__} className="text-xs text-slate-600">
                     {defn?.definition}
                     {defn?.example && (
-                      <span className="block my-2 pl-4">{defn.example}</span>
+                      <span className="block my-2 pl-4 text-darkPink">
+                        E.g. {defn.example}
+                      </span>
                     )}
                   </li>
                 ))}
               </ul>
               {mean?.synonyms.length > 0 && (
-                <div className="flex items-center gap-1 py-2 my-2 text-sm justify-normal">
+                <div className="flex items-center gap-1 py-1 my-1 text-sm justify-normal">
                   <h6 className="px-3 py-1 text-slate-600">Synonyms:</h6>
                   {mean?.synonyms?.map((sym, _, arr) => (
                     <p className="font-semibold text-darkPink">
@@ -46,7 +56,7 @@ const Meaning = () => {
               )}
 
               {mean?.antonyms.length > 0 && (
-                <div className="flex items-center gap-1 py-2 my-2 text-sm justify-normal">
+                <div className="flex items-center gap-1 py-1 my-1 text-sm justify-normal">
                   <h6 className="px-3 py-1 text-slate-600">Antonyms:</h6>
                   {mean?.antonyms?.map((ant, _, arr) => (
                     <p className="font-semibold text-darkPink">

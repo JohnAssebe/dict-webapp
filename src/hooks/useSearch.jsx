@@ -6,5 +6,6 @@ const getWords = async (term) => {
 };
 
 export const useSearchWords = (term) => {
+  // if (!term) return;
   return useQuery(["meaning", term], () => getWords(term));
 };
