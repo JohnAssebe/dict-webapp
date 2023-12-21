@@ -2,10 +2,9 @@ import { api } from "./api";
 import { useQuery } from "react-query";
 const getWords = async (term) => {
   const response = await api.get(term);
-  return response?.data[0];
+  return response;
 };
 
 export const useSearchWords = (term) => {
-  // if (!term) return;
   return useQuery(["meaning", term], () => getWords(term));
 };
