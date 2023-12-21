@@ -30,7 +30,7 @@ function Headers() {
       </div>
       <div className="relative flex items-center justify-center py-6 rounded-lg max-w-[1000px] mx-auto px-4">
         <input
-          className="w-full h-full px-3 py-2 border rounded-lg outline-none placeholder:font-poppins placeholder:text-black bg-slate-200"
+          className="w-full h-full px-3 py-2 border rounded-lg outline-none placeholder:font-poppins placeholder:text-gray-800 bg-slate-200"
           placeholder="keyboard"
         />
         <img src={SearchSVG} className="absolute right-9" />

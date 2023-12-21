@@ -5,9 +5,11 @@ export default {
     extend: {
       fontFamily: {
         poppins: "Poppins",
+        openSans: "Open Sans",
       },
       colors: {
         lightPink: "#EDD1FF",
+        darkPink: "#F11CAA",
       },
     },
   },

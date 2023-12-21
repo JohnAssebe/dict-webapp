@@ -1,9 +1,15 @@
+import { QueryClientProvider, QueryClient } from "react-query";
 import Headers from "./components/header";
+import Meaning from "./components/meaning";
 function App() {
+  const client = new QueryClient();
   return (
-    <div>
-      <Headers />
-    </div>
+    <QueryClientProvider client={client}>
+      <div>
+        <Headers />
+        <Meaning />
+      </div>
+    </QueryClientProvider>
   );
 }
 
