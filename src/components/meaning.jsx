@@ -9,6 +9,18 @@ const Meaning = ({ word }) => {
     isLoading: load,
     isError: error,
   } = word && useSearchWords(word);
+
+  const play = (src) => {
+    var audioUrl = "";
+    src?.map((audiofile) => {
+      if (audiofile.audio != "") {
+        audioUrl = audiofile.audio;
+        return;
+      }
+    });
+    new Audio(audioUrl).play();
+  };
+
   return (
     <div className="w-full">
       <div className="max-w-[1000px] mx-auto px-6 font-openSans dark:text-white duration-500">
@@ -38,9 +50,14 @@ const Meaning = ({ word }) => {
                 </h3>
                 <p className=" text-darkPink">{searchWord?.phonetic}</p>
               </div>
-              <div className="flex items-center justify-center w-12 h-12 rounded-full bg-lightPink">
-                <FaPlay className="text-darkPink" />
-              </div>
+              {searchWord?.phonetic && (
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-lightPink">
+                  <FaPlay
+                    className="text-darkPink"
+                    onClick={() => play(searchWord?.phonetics)}
+                  />
+                </div>
+              )}
             </div>
           )
         )}
@@ -48,10 +65,15 @@ const Meaning = ({ word }) => {
           {searchWord?.meanings?.map((mean, _) => (
             <div key={_}>
               <h4 className="py-3 text-2xl font-bold">{mean.partOfSpeech}</h4>
-              <h6 className="px-3 py-1 text-sm text-slate-600 duration-500 dark:text-slate-300">Meaning</h6>
+              <h6 className="px-3 py-1 text-sm duration-500 text-slate-600 dark:text-slate-300">
+                Meaning
+              </h6>
               <ul className="py-2 pl-6 space-y-2 font-medium list-disc list-inside">
                 {mean?.definitions?.map((defn, __) => (
-                  <li key={__} className="text-xs text-slate-600 duration-500 dark:text-slate-300">
+                  <li
+                    key={__}
+                    className="text-xs duration-500 text-slate-600 dark:text-slate-300"
+                  >
                     {defn?.definition}
                     {defn?.example && (
                       <span className="block pl-4 my-2 text-darkPink">
@@ -62,8 +84,10 @@ const Meaning = ({ word }) => {
                 ))}
               </ul>
               {mean?.synonyms.length > 0 && (
-                <div className="flex flex-wrap gap-1 items-center gap-1 py-1 my-1 text-sm justify-normal">
-                  <h6 className="px-3 py-1 text-slate-600 duration-500 dark:text-slate-300">Synonyms:</h6>
+                <div className="flex flex-wrap items-center gap-1 py-1 my-1 text-sm justify-normal">
+                  <h6 className="px-3 py-1 duration-500 text-slate-600 dark:text-slate-300">
+                    Synonyms:
+                  </h6>
                   {mean?.synonyms?.map((sym, _, arr) => (
                     <p className="font-semibold text-darkPink" key={_}>
                       {sym}
@@ -74,8 +98,10 @@ const Meaning = ({ word }) => {
               )}
 
               {mean?.antonyms.length > 0 && (
-                <div className="flex flex-wrap gap-1 items-center gap-1 py-1 my-1 text-sm justify-normal">
-                  <h6 className="px-3 py-1 text-slate-600 duration-500 dark:text-slate-300">Antonyms:</h6>
+                <div className="flex flex-wrap items-center gap-1 py-1 my-1 text-sm justify-normal">
+                  <h6 className="px-3 py-1 duration-500 text-slate-600 dark:text-slate-300">
+                    Antonyms:
+                  </h6>
                   {mean?.antonyms?.map((ant, _, arr) => (
                     <p className="font-semibold text-darkPink" key={_}>
                       {ant}
