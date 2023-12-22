@@ -62,7 +62,7 @@ const Meaning = ({ word }) => {
                 ))}
               </ul>
               {mean?.synonyms.length > 0 && (
-                <div className="flex items-center gap-1 py-1 my-1 text-sm justify-normal">
+                <div className="flex flex-wrap gap-1 items-center gap-1 py-1 my-1 text-sm justify-normal">
                   <h6 className="px-3 py-1 text-slate-600">Synonyms:</h6>
                   {mean?.synonyms?.map((sym, _, arr) => (
                     <p className="font-semibold text-darkPink" key={_}>
@@ -74,7 +74,7 @@ const Meaning = ({ word }) => {
               )}
 
               {mean?.antonyms.length > 0 && (
-                <div className="flex items-center gap-1 py-1 my-1 text-sm justify-normal">
+                <div className="flex flex-wrap gap-1 items-center gap-1 py-1 my-1 text-sm justify-normal">
                   <h6 className="px-3 py-1 text-slate-600">Antonyms:</h6>
                   {mean?.antonyms?.map((ant, _, arr) => (
                     <p className="font-semibold text-darkPink" key={_}>
