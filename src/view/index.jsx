@@ -8,7 +8,7 @@ const Dictionary = () => {
   const updateSearchTerm = (term) => setSearchTerm(term.target.value);
 
   return (
-    <div>
+    <div className="dark:bg-black min-h-screen">
       <Headers searchChange={updateSearchTerm} />
       <Meaning word={debouncedValue} />
     </div>

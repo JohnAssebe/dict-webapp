@@ -11,7 +11,7 @@ const Meaning = ({ word }) => {
   } = word && useSearchWords(word);
   return (
     <div className="w-full">
-      <div className="max-w-[1000px] mx-auto px-6 font-openSans dark:text-white dark:bg-black">
+      <div className="max-w-[1000px] mx-auto px-6 font-openSans dark:text-white duration-500">
         {error && (
           <div className="flex items-center justify-between">
             <div className="py-2">
@@ -48,10 +48,10 @@ const Meaning = ({ word }) => {
           {searchWord?.meanings?.map((mean, _) => (
             <div key={_}>
               <h4 className="py-3 text-2xl font-bold">{mean.partOfSpeech}</h4>
-              <h6 className="px-3 py-1 text-sm text-slate-600">Meaning</h6>
+              <h6 className="px-3 py-1 text-sm text-slate-600 duration-500 dark:text-slate-300">Meaning</h6>
               <ul className="py-2 pl-6 space-y-2 font-medium list-disc list-inside">
                 {mean?.definitions?.map((defn, __) => (
-                  <li key={__} className="text-xs text-slate-600">
+                  <li key={__} className="text-xs text-slate-600 duration-500 dark:text-slate-300">
                     {defn?.definition}
                     {defn?.example && (
                       <span className="block pl-4 my-2 text-darkPink">
@@ -63,7 +63,7 @@ const Meaning = ({ word }) => {
               </ul>
               {mean?.synonyms.length > 0 && (
                 <div className="flex flex-wrap gap-1 items-center gap-1 py-1 my-1 text-sm justify-normal">
-                  <h6 className="px-3 py-1 text-slate-600">Synonyms:</h6>
+                  <h6 className="px-3 py-1 text-slate-600 duration-500 dark:text-slate-300">Synonyms:</h6>
                   {mean?.synonyms?.map((sym, _, arr) => (
                     <p className="font-semibold text-darkPink" key={_}>
                       {sym}
@@ -75,7 +75,7 @@ const Meaning = ({ word }) => {
 
               {mean?.antonyms.length > 0 && (
                 <div className="flex flex-wrap gap-1 items-center gap-1 py-1 my-1 text-sm justify-normal">
-                  <h6 className="px-3 py-1 text-slate-600">Antonyms:</h6>
+                  <h6 className="px-3 py-1 text-slate-600 duration-500 dark:text-slate-300">Antonyms:</h6>
                   {mean?.antonyms?.map((ant, _, arr) => (
                     <p className="font-semibold text-darkPink" key={_}>
                       {ant}
